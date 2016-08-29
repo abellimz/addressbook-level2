@@ -6,12 +6,13 @@ import seedu.addressbook.data.person.ReadOnlyPerson;
 
 import java.util.List;
 
-import static seedu.addressbook.ui.TextUi.DISPLAYED_INDEX_OFFSET;
+import static seedu.addressbook.ui.Formatter.DISPLAYED_INDEX_OFFSET;
 
 /**
  * Represents an executable command.
  */
 public abstract class Command {
+    
     protected AddressBook addressBook;
     protected List<? extends ReadOnlyPerson> relevantPersons;
     private int targetIndex = -1;
