@@ -5,6 +5,7 @@ import seedu.addressbook.storage.StorageFile.*;
 
 import seedu.addressbook.commands.*;
 import seedu.addressbook.data.AddressBook;
+import seedu.addressbook.data.exception.StorageDeletedException;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
 import seedu.addressbook.ui.TextUi;
@@ -20,7 +21,9 @@ import java.util.Optional;
  */
 public class Main {
 
-    /** Version info of the program. */
+    private static final String MESSAGE_STORAGE_DELETED = "Storage file was deleted";
+
+	/** Version info of the program. */
     public static final String VERSION = "AddessBook Level 2 - Version 1.0";
 
     private TextUi ui;
@@ -109,6 +112,9 @@ public class Main {
             CommandResult result = command.execute();
             storage.save(addressBook, true);
             return result;
+        } catch (StorageDeletedException e){
+        	ui.showToUser(MESSAGE_STORAGE_DELETED);
+        	return executeCommand(command);
         } catch (Exception e) {
             ui.showToUser(e.getMessage());
             throw new RuntimeException(e);
