@@ -40,14 +40,14 @@ public class Name {
     /**
      * Returns true of the other name is very similar to this name.
      * Two names are considered similar if they have the same value
-     * after trimming the spaces and converting to lower case
+     * after removing the spaces and converting to lower case
      */
      public boolean isSimilar(Name other) {
     	 if (other == null) {
     		 return false;
     	 }
-    	 String thisName = fullName.trim().toLowerCase();
-    	 String otherName = other.fullName.trim().toLowerCase();
+    	 String thisName = fullName.replaceAll("\\s+", "").toLowerCase();
+    	 String otherName = other.fullName.replaceAll("\\s+", "").toLowerCase();
     	 return thisName.equals(otherName);
      }
 
