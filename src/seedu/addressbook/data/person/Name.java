@@ -36,6 +36,20 @@ public class Name {
     public static boolean isValidName(String test) {
         return test.matches(NAME_VALIDATION_REGEX);
     }
+    
+    /**
+     * Returns true of the other name is very similar to this name.
+     * Two names are considered similar if they have the same value
+     * after trimming the spaces and converting to lower case
+     */
+     public boolean isSimilar(Name other) {
+    	 if (other == null) {
+    		 return false;
+    	 }
+    	 String thisName = fullName.trim().toLowerCase();
+    	 String otherName = other.fullName.trim().toLowerCase();
+    	 return thisName.equals(otherName);
+     }
 
     /**
      * Retrieves a listing of every word in the name, in order.
